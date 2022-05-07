@@ -5,7 +5,9 @@ import cucumber.api.java.After;
 import cucumber.api.java.Before;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+
 import java.util.concurrent.TimeUnit;
+
 import static support.TestContest.getDriver;
 
 public class Hooks {

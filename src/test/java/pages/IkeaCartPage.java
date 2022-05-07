@@ -1,2 +1,4 @@
-package pages;public class IkeaCartPage {
+package pages;
+
+public class IkeaCartPage extends Page {
 }
