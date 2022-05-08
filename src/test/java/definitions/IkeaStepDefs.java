@@ -29,6 +29,5 @@ public class IkeaStepDefs {
     public void iSearchForInStore(String sofa) throws InterruptedException {
         System.out.println("iSearchForSofa");
         new IkeaHomePage().searchBox(sofa);
-        Thread.sleep(3000);
     }
 }

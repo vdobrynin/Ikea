@@ -2,10 +2,13 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Action;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
 import static support.TestContest.getDriver;
+import static support.TestContest.getExecutor;
 
 public class IkeaHomePage extends Page {
 
@@ -13,32 +16,35 @@ public class IkeaHomePage extends Page {
         setUrl("https://www.ikea.com/us/en");
     }
 
-    @FindBy(xpath = "//body//header//div[@class='hnf-page-container']" +
-            "//div[@class='hnf-header__container hnf-page-container__main']" +
-            "//div[@class='hnf-header__search']//div[@data-css-scope='search-box']" +
-            "//form[@role='search']//div[@class='search-wrapper']" +
-            "//input[@placeholder='What are you looking for?']")
+    @FindBy(xpath = "//input[@placeholder='What are you looking for?']")
     @CacheLookup
     private WebElement getToSearchBox;
 
     public void searchInput(String findString) {
-        getDriver().findElement(By.xpath("//body//header//div[@class='hnf-page-container']" +
-                "//div[@class='hnf-header__container hnf-page-container__main']" +
-                "//div[@class='hnf-header__search']//div[@data-css-scope='search-box']" +
-                "//form[@role='search']//div[@class='search-wrapper']" +
-                "//input[@placeholder='What are you looking for?']")).isSelected();
-        getToSearchBox.click();
+        getToSearchBox.isSelected();
     }
 
-    @FindBy(xpath = "//body//header//div[@class='hnf-page-container']" +
-            "//div[@class='hnf-header__container hnf-page-container__main']//div[@class='hnf-header__search']" +
-            "//div[@data-css-scope='search-box']//form[@role='search']//div[@class='search-wrapper']" +
-            "//input[@placeholder='What are you looking for?']")
+    @FindBy(xpath = "//input[@placeholder='What are you looking for?']")
     @CacheLookup
     private WebElement getSearchBox;
 
-    public void searchBox(String sofa) {
+    @FindBy(xpath = "//body//header//span[@class='search-box__button-wrapper']" +
+            "//button[@id='search-box__searchbutton']")
+    @CacheLookup
+    private WebElement searchButton;
+
+    public void searchBox(String sofa) throws InterruptedException {
         getSearchBox.sendKeys(sofa);
-        getSearchBox.click();
+        Thread.sleep(1000);
+
+        searchButton.isSelected();
+        new Actions(getDriver())
+                .click(searchButton)
+                .perform();
+        Thread.sleep(1000);
     }
+
+
+
+
 }
