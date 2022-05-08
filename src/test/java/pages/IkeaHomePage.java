@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
@@ -28,8 +29,7 @@ public class IkeaHomePage extends Page {
     @CacheLookup
     private WebElement getSearchBox;
 
-    @FindBy(xpath = "//body//header//span[@class='search-box__button-wrapper']" +
-            "//button[@id='search-box__searchbutton']")
+    @FindBy(cssSelector = "#search-box__searchbutton")
     @CacheLookup
     private WebElement searchButton;
 
@@ -37,14 +37,13 @@ public class IkeaHomePage extends Page {
         getSearchBox.sendKeys(sofa);
         Thread.sleep(1000);
 
-        searchButton.isSelected();
-        new Actions(getDriver())
-                .click(searchButton)
-                .perform();
+        searchButton.findElement(By.cssSelector("#search-box__searchbutton")).sendKeys(Keys.ENTER);
+/*
+        searchButton.sendKeys(Keys.ENTER);
+        Actions act = new Actions(getDriver());
+        searchButton.sendKeys((CharSequence) getExecutor().executeScript("arguments[0].click();", searchButton));
+        act.click(searchButton).perform();
+*/
         Thread.sleep(1000);
     }
-
-
-
-
 }

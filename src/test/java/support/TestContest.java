@@ -63,7 +63,8 @@ public class TestContest {
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--start-maximized");
 //                chromeOptions.addExtensions(new File(System.getProperty("user.dir") + "/src/test/resources/config/SelectorsHub---XPath-Plugin-4.3.8.0.crx"));
-//                chromeOptions.addExtensions(new File(System.getProperty("user.dir") + "/src/test/resources/config/ChroPath 6.1.12.0.crx"));
+//                chromeOptions.addExtensions(new File(System.getProperty("user.dir") + "/src/test/resources/config/ChroPath_6.1.12.0.crx"));
+//                chromeOptions.addExtensions(new File(System.getProperty("user.dir") + "/src/test/resources/config/ChroPath_v5.0.6.crx"));
 //                chromeOptions.addExtensions(new File(System.getProperty("user.dir") + "/src/test/resources/config/SelectorsHub---XPath-Plugin.crx"));
                 chromeOptions.setExperimentalOption("prefs", chromePreferences);
                 if (isHeadless) {
