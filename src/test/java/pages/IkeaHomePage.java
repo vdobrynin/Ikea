@@ -40,10 +40,10 @@ public class IkeaHomePage extends Page {
         PageFactory.initElements(getDriver(), this);
     }
 
-    public void searchBox(String sofa) throws InterruptedException {
+    public void searchBox(String sofa) {
         PageFactory.initElements(getDriver(), this);
         getSearchBox.sendKeys(sofa);
-        searchButton.findElement(By.xpath("//*[@id='search-box__searchbutton']")).sendKeys(Keys.ENTER);
-        Thread.sleep(3000);
+        searchButton.submit();
+//        Thread.sleep(3000);
     }
 }
