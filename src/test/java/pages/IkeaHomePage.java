@@ -44,6 +44,5 @@ public class IkeaHomePage extends Page {
         PageFactory.initElements(getDriver(), this);
         getSearchBox.sendKeys(sofa);
         searchButton.submit();
-//        Thread.sleep(3000);
     }
 }

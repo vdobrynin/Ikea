@@ -4,6 +4,7 @@ import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
+import pages.IkeaCartPage;
 import pages.IkeaHomePage;
 import pages.IkeaProductsPage;
 
@@ -33,8 +34,14 @@ public class IkeaStepDefs {
     }
 
     @Then("I add item to cart")
-    public void iAddItemToCart() throws InterruptedException {
+    public void iAddItemToCart() {
         System.out.println("iAddSofaToCart");
         new IkeaProductsPage().getItemToBag();
+    }
+
+    @Then("I open cart")
+    public void iOpenCart() {
+        System.out.println("iOpenCart");
+        new IkeaCartPage().getCartButton();
     }
 }

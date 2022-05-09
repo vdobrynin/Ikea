@@ -8,3 +8,4 @@
       And I search for "sofa" in store
       And On product page I find "uppland" item
       Then I add item to cart
+      Then I open cart
