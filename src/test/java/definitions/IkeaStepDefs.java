@@ -28,20 +28,20 @@ public class IkeaStepDefs {
     }
 
     @And("On product page I find {string} item")
-    public void onProductPageIFindItem(String tagName) {
+    public void onProductPageIFindItem(String text) {
         System.out.println("iFindFirstSofa");
-        new IkeaProductsPage().getFirstItem();
+        new IkeaProductsPage().getFirstItem(text);
     }
 
-    @Then("I add item to cart")
-    public void iAddItemToCart() {
+    @Then("I add item {string} to cart")
+    public void iAddItemToCart(String text) {
         System.out.println("iAddSofaToCart");
-        new IkeaProductsPage().getItemToBag();
+        new IkeaProductsPage().getItemToCart();
     }
 
-    @Then("I open cart")
-    public void iOpenCart() {
-        System.out.println("iOpenCart");
+    @Then("I open cart and validate two items in cart")
+    public void iOpenCartAndValidateTwoItemsInCart() {
+        System.out.println("iOpenCartAndValidateTwoItemsInCart");
         new IkeaCartPage().getCartButton();
     }
 }

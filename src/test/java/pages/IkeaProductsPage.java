@@ -3,29 +3,31 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
+import static support.TestContest.getDriver;
 import static support.TestContest.getExecutor;
 
 public class IkeaProductsPage extends Page {
 
-    @FindBy(xpath = "//*[text() = 'UPPLAND']")
+    @FindBy(xpath = "//*[@id='search-results']/div[1]/div[2]/a/div/div[1]/h3/span[1]")
     public WebElement firstFoundItem;
 
     public void firstFoundItem(String sofaUppland) {
-        firstFoundItem.getTagName();
+        firstFoundItem.isSelected();
     }
 
-    public void getFirstItem() {
-        getExecutor().executeScript("arguments[0].scrollIntoView();", firstFoundItem);
+    public void getFirstItem(String name) {
+        getExecutor().executeScript("arguments[0].scrollIntoView(true);", firstFoundItem);
         getExecutor().executeScript("arguments[0].click();", firstFoundItem);
     }
 
-    @FindBy(xpath = "//*[text() = 'Add to bag']")
+    @FindBy(xpath = "//*[@id='content']/div/div/div/div[2]/div[1]/div/div[9]/div/div/button/span/span")
     @CacheLookup
-    public WebElement addToBag;
+    public WebElement addToCart;
 
-    public void getItemToBag() {
-        getExecutor().executeScript("arguments[0].scrollIntoView();", addToBag);
-        getExecutor().executeScript("arguments[0].click();", addToBag);
+    public void getItemToCart() {
+        getExecutor().executeScript("arguments[0].scrollIntoView(true);", addToCart);
+        getExecutor().executeScript("arguments[0].click();", addToCart);
     }
 }
