@@ -22,9 +22,9 @@ public class IkeaStepDefs {
     }
 
     @And("I search for {string} in store")
-    public void iSearchForInStore(String sofa) {
+    public void iSearchForInStore(String text) {
         System.out.println("iSearchForSofa");
-        new IkeaHomePage().searchBox(sofa);
+        new IkeaHomePage().searchBox(text);
     }
 
     @And("On product page I find {string} item")
@@ -38,10 +38,22 @@ public class IkeaStepDefs {
         System.out.println("iAddSofaToCart");
         new IkeaProductsPage().getItemToCart();
     }
+    
+    @Then("I open cart and")
+    public void iOpenCartAnd() {
+    }
 
-    @Then("I open cart and validate two items in cart")
-    public void iOpenCartAndValidateTwoItemsInCart() {
-        System.out.println("iOpenCartAndValidateTwoItemsInCart");
-        new IkeaCartPage().getCartButton();
+    @And("validate two items in cart")
+    public void validateTwoItemsInCart() {
+        
+    }
+
+    @Then("I enter discount code to apply")
+    public void iEnterDiscountCodeToApply() {
+        
+    }
+
+    @Then("I validate that {string} but error message is displayed")
+    public void iValidateThatButErrorMessageIsDisplayed(String arg0) {
     }
 }
