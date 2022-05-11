@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import static support.TestContest.getDriver;
 import static support.TestContest.getExecutor;
 
-public class IkeaCartPage {
+public class IkeaCartPage extends Page {
 
     @FindBy(xpath = "//*[text() = '1']")
     public WebElement cartButton;

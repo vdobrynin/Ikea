@@ -11,6 +11,6 @@
 #      And I search for "table" in store
 #      And On product page I find third item "table"
 #      Then I add item "table" to cart
-#      Then I open cart and validate two items in cart
+      Then I open cart and validate two items in cart
 #      Then I enter discount code to apply
 #      But I validate that "invalid coupon code" but error message is displayed
