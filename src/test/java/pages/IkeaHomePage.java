@@ -23,7 +23,7 @@ public class IkeaHomePage extends Page {
 
 
     @FindBy(xpath = "//*[@id='onetrust-accept-btn-handler']")
-    public WebElement okButton;
+    private WebElement okButton;
 
 
     public void searchInput(String findString) {
@@ -38,7 +38,7 @@ public class IkeaHomePage extends Page {
 
     @FindBy(xpath = "//*[@id='search-box__searchbutton']")
     @CacheLookup
-    public WebElement searchButton;
+    private WebElement searchButton;
 
     public IkeaHomePage(WebDriver driver) {
         PageFactory.initElements(getDriver(), this);

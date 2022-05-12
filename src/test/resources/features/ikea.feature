@@ -8,10 +8,10 @@ Feature: Ikea Test Suite
     And I search for "sofa" in store
     And On product page I find "first" item
     Then I add item "uppland" to cart
-    And I search for "table" in store
-    And On product page I find "third" item
-    Then I add item "table" to cart
-    Then I open cart and
-    And validate two items in cart
-    Then I enter discount code to apply
-    Then I validate that "invalid coupon code" but error message is displayed
+    Then I search for "table" in store
+    And On page I find "third" item
+    Then I add item "jokkmokk" to cart
+    Then I open cart
+    And I validate that two items in cart
+#    Then I enter discount code to apply
+#    Then I validate that "invalid coupon code" but error message is displayed
