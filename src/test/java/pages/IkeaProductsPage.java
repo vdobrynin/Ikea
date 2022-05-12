@@ -54,7 +54,6 @@ public class IkeaProductsPage extends Page {
     @CacheLookup
     private WebElement extraItemsSideBar;
 
-
 //    @Override
 //    public boolean equals(Object o) {
 //        if (this == o) return true;

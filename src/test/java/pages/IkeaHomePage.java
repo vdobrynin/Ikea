@@ -23,6 +23,7 @@ public class IkeaHomePage extends Page {
 
 
     @FindBy(xpath = "//*[@id='onetrust-accept-btn-handler']")
+    @CacheLookup
     private WebElement okButton;
 
 

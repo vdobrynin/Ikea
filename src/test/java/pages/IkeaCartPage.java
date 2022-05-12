@@ -24,7 +24,29 @@ public class IkeaCartPage extends Page {
     @CacheLookup
     private WebElement listItems;
 
-    public String getCartListResult() {
-        return listItems.getText();
+    public String getCartListResult() { return listItems.getText(); }
+
+    @FindBy(xpath = "//*[@class='cart-ingka-accordion-item-header__title']")
+    @CacheLookup
+    private WebElement discountField;
+
+    @FindBy(xpath = "//input[@id='discountCode']")
+    @CacheLookup
+    private WebElement discountCode;
+
+    public void clickAndEnterDiscountCode(String text) {
+        discountField.click();
+        discountCode.sendKeys(text);
+        applyButton.click();
     }
+
+    @FindBy(xpath = "//span[@class='cart-ingka-form-field__message']")
+    @CacheLookup
+    private WebElement errorMessage;
+
+    public String getErrorMessage(String text) { return errorMessage.getText(); }
+
+    @FindBy(xpath = "//button[@type='submit']//span[@class='cart-ingka-btn__inner']")
+    @CacheLookup
+    private WebElement applyButton;
 }
