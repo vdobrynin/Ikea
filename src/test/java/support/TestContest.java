@@ -9,11 +9,16 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.*;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.ie.InternetExplorerOptions;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -23,25 +28,31 @@ public class TestContest {
 
     private static WebDriver driver;
 
-    public static JavascriptExecutor getExecutor() {
+    public static WebDriver getDriver() { return driver; }
 
-        return (JavascriptExecutor) driver;
+    public static JavascriptExecutor getExecutor() { return (JavascriptExecutor) driver; }
+
+    public static Map<String, String> getData(String fileName) {
+        String path = System.getProperty("user.dir") + "/src/test/resources/data/" + fileName + ".yml";
+        File file = new File(path);
+        FileInputStream stream = null;
+        try {
+            stream = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return new Yaml().load(stream);
     }
 
-    public static WebDriver getDriver() {
+    public static WebDriverWait getWait() { return getWait(5); }
 
-        return driver;
-    }
+    public static WebDriverWait getWait(int timeout) { return new WebDriverWait(driver, timeout); }
 
-    public static void initialize() {
+    public static Actions getActions() { return new Actions(driver); }
 
-        initialize("chrome", false);
-    }
+    public static void initialize() { initialize("chrome", false); }
 
-    public static void teardown() {
-
-        driver.quit();
-    }
+    public static void teardown() { driver.quit(); }
 
     public static void initialize(String browser, boolean isHeadless) {
         String osName = System.getProperty("os.name");
@@ -62,11 +73,11 @@ public class TestContest {
                 chromePreferences.put("safebrowsing.enabled", "true");
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--start-maximized");
-                chromeOptions.addExtensions(new File(System.getProperty("user.dir") + "/src/test/resources/config/SelectorsHub_4.3.8.0.crx"));
+                chromeOptions.addExtensions(new File(System.getProperty("user.dir") + "/src/test/resources/config/SelectorsHub.4.3.9.0.crx"));
                 chromeOptions.setExperimentalOption("prefs", chromePreferences);
                 if (isHeadless) {
                     chromeOptions.setHeadless(true);
-                    chromeOptions.addArguments("--window-size=1920,1080");
+                    chromeOptions.addArguments("--window-size=1920,1200");
                     chromeOptions.addArguments("--disable-gpu");
                 }
                 driver = new ChromeDriver(chromeOptions);

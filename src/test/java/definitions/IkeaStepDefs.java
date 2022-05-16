@@ -6,7 +6,8 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import pages.IkeaCartPage;
 import pages.IkeaHomePage;
-import pages.IkeaProductsPage;
+import pages.IkeaProductSofaPage;
+import pages.IkeaProductTablesPage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -29,17 +30,27 @@ public class IkeaStepDefs {
 
     @And("On product page I find {string} item")
     public void onProductPageIFindItem(String text) {
-        new IkeaProductsPage().getFirstItem(text);
+        new IkeaProductSofaPage().getFirstItem(text);
     }
 
-    @Then("I add item {string} to cart")
-    public void iAddItemToCart(String text) {
-        new IkeaProductsPage().getItemToCart();
+    @Then("I add item to cart")
+    public void iAddItemToCart() throws InterruptedException {
+        new IkeaProductSofaPage().getFirstItemToCart();
     }
 
-    @And("On page I find {string} item")
-    public void onPageIFindItem(String text) {
-        new IkeaProductsPage().getThirdItem(text);
+    @Then("I go to search bar at the top of the page to enter {string}")
+    public void iGoToSearchBarAtTheTopOfThePageToEnter(String text) {
+        new IkeaProductSofaPage().search(text);
+    }
+
+    @Then("I search for {string} at store")
+    public void iSearchForAtStore(String text) {
+        new IkeaProductTablesPage().getThirdItem(text);
+    }
+
+    @Then("I add item to a cart")
+    public void iAddItemToACart() throws InterruptedException {
+        new IkeaProductTablesPage().addThirdItemToACart();
     }
 
     @Then("I open cart")
@@ -49,11 +60,11 @@ public class IkeaStepDefs {
 
     @And("I validate that two items in cart")
     public void iValidateThatTwoItemsInCart() {
-        IkeaCartPage cartPage = new  IkeaCartPage();
+        IkeaCartPage cartPage = new IkeaCartPage();
         String actualResultText = cartPage.getCartListResult();
 
-        assertThat(actualResultText).containsIgnoringCase(("uppland"));
-        assertThat(actualResultText).containsIgnoringCase(("jokkmokk"));
+        assertThat(actualResultText).containsIgnoringCase(("sofa"));
+        assertThat(actualResultText).containsIgnoringCase(("desk"));
     }
 
     @When("I enter discount code {string} to apply")
