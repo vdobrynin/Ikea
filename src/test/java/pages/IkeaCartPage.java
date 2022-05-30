@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -10,20 +9,26 @@ import static support.TestContest.*;
 
 public class IkeaCartPage extends Page {
 
-    @FindBy(xpath = "//*[@class='hnf-btn__inner js-shopping-cart-icon']")
+    @FindBy(xpath = "(//div[@class='product_informationContainer__3ZLbC'])[1]")
     @CacheLookup
-    private WebElement cartButton;
+    private WebElement firstItem;
 
-    public void getCartButton() {
-        getExecutor().executeScript("window.scrollBy(0,-250)");
-        getExecutor().executeScript("arguments[0].click();", cartButton);
+    @FindBy(xpath = "(//div[@class='product_informationContainer__3ZLbC'])[2]")
+    @CacheLookup
+    private WebElement secondItem;
+
+    public String getCartListResult1() {
+        getDriver().navigate().refresh();
+        getWait().until(ExpectedConditions.visibilityOf(firstItem));
+        firstItem.isSelected();
+        return firstItem.getText();
     }
 
-    @FindBy(xpath = "(//div[@class='productList_productlist__2obpO'])[1]")
-    @CacheLookup
-    private WebElement listItems;
-
-    public String getCartListResult() { return listItems.getText(); }
+    public String getCartListResult2() {
+        getWait().until(ExpectedConditions.visibilityOf(secondItem));
+        secondItem.isSelected();
+        return secondItem.getText();
+    }
 
     @FindBy(xpath = "//*[@class='cart-ingka-accordion-item-header__title']")
     @CacheLookup
@@ -34,10 +39,10 @@ public class IkeaCartPage extends Page {
     private WebElement discountCode;
 
     public void clickAndEnterDiscountCode(String text) {
+        getExecutor().executeScript("arguments[0].scrollIntoView(true);", discountField);
         discountField.click();
         discountCode.sendKeys(text);
 
-        getExecutor().executeScript("window.scrollBy(0,250)");
         getExecutor().executeScript("arguments[0].scrollIntoView(true);", applyButton);
         getExecutor().executeScript("arguments[0].click();", applyButton);
     }

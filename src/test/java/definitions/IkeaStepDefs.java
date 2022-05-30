@@ -7,16 +7,14 @@ import cucumber.api.java.en.When;
 import pages.IkeaCartPage;
 import pages.IkeaHomePage;
 import pages.IkeaProductSofaPage;
-import pages.IkeaProductTablesPage;
+import pages.IkeaProductTablePage;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class IkeaStepDefs {
 
     @Given("I go to {string} page")
-    public void iGoToPage(String page) {
-        new IkeaHomePage().open();
-    }
+    public void iGoToPage(String page) { new IkeaHomePage().open(); }
 
     @When("I go to input box {string}")
     public void iGoToInputBox(String inputBox) {
@@ -34,7 +32,7 @@ public class IkeaStepDefs {
     }
 
     @Then("I add item to cart")
-    public void iAddItemToCart() throws InterruptedException {
+    public void iAddItemToCart() {
         new IkeaProductSofaPage().getFirstItemToCart();
     }
 
@@ -45,26 +43,28 @@ public class IkeaStepDefs {
 
     @Then("I search for {string} at store")
     public void iSearchForAtStore(String text) {
-        new IkeaProductTablesPage().getThirdItem(text);
+        new IkeaProductTablePage().getThirdItem(text);
     }
 
     @Then("I add item to a cart")
-    public void iAddItemToACart() throws InterruptedException {
-        new IkeaProductTablesPage().addThirdItemToACart();
+    public void iAddItemToACart() {
+        new IkeaProductTablePage().addThirdItemToACart();
     }
 
     @Then("I open cart")
     public void iOpenCart() {
-        new IkeaCartPage().getCartButton();
+        new IkeaProductTablePage().getCartButton();
     }
 
     @And("I validate that two items in cart")
     public void iValidateThatTwoItemsInCart() {
         IkeaCartPage cartPage = new IkeaCartPage();
-        String actualResultText = cartPage.getCartListResult();
 
-        assertThat(actualResultText).containsIgnoringCase(("sofa"));
-        assertThat(actualResultText).containsIgnoringCase(("desk"));
+        String actualText1 = cartPage.getCartListResult1();
+        assertThat(actualText1).toString().trim().equalsIgnoreCase("sofa");
+
+        String actualText2 = cartPage.getCartListResult2();
+        assertThat(actualText1).toString().trim().equalsIgnoreCase("table");
     }
 
     @When("I enter discount code {string} to apply")

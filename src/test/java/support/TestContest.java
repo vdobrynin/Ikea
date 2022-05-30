@@ -14,11 +14,8 @@ import org.openqa.selenium.remote.BrowserType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
@@ -32,18 +29,6 @@ public class TestContest {
 
     public static JavascriptExecutor getExecutor() { return (JavascriptExecutor) driver; }
 
-    public static Map<String, String> getData(String fileName) {
-        String path = System.getProperty("user.dir") + "/src/test/resources/data/" + fileName + ".yml";
-        File file = new File(path);
-        FileInputStream stream = null;
-        try {
-            stream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        return new Yaml().load(stream);
-    }
-
     public static WebDriverWait getWait() { return getWait(5); }
 
     public static WebDriverWait getWait(int timeout) { return new WebDriverWait(driver, timeout); }
@@ -56,10 +41,11 @@ public class TestContest {
 
     public static void initialize(String browser, boolean isHeadless) {
         String osName = System.getProperty("os.name");
+        final boolean b = osName != null && (osName.contains("Mac") || osName.contains("Linux"));
         switch (browser) {
             case "chrome":
                 String chromeDriverName = "chromedriver.exe";
-                if (osName != null && (osName.contains("Mac") || osName.contains("Linux"))) {
+                if (b) {
                     chromeDriverName = "chromedriver";
                 }
                 System.setProperty("webdriver.chrome.driver", getDriversDirPath() + chromeDriverName);
@@ -73,9 +59,8 @@ public class TestContest {
                 chromePreferences.put("safebrowsing.enabled", "true");
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.addArguments("--start-maximized");
-                chromeOptions.addExtensions(new File(System.getProperty("user.dir") + "/src/test/resources/config/SelectorsHub.4.3.9.0.crx"));
                 chromeOptions.setExperimentalOption("prefs", chromePreferences);
-                if (isHeadless) {
+                if (isHeadless = true) {
                     chromeOptions.setHeadless(true);
                     chromeOptions.addArguments("--window-size=1920,1200");
                     chromeOptions.addArguments("--disable-gpu");
@@ -84,7 +69,7 @@ public class TestContest {
                 break;
             case "firefox":
                 String geckoDriverName = "geckodriver.exe";
-                if (osName != null && (osName.contains("Mac") || osName.contains("Linux"))) {
+                if (b) {
                     geckoDriverName = "geckodriver";
                 }
                 System.setProperty("webdriver.gecko.driver", getDriversDirPath() + geckoDriverName);

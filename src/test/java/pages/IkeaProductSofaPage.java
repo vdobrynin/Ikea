@@ -1,8 +1,10 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static support.TestContest.*;
 
@@ -15,6 +17,7 @@ public class IkeaProductSofaPage extends Page {
 
     public void getFirstItem(String name) {
         getDriver().navigate().refresh();
+        getWait().until(ExpectedConditions.visibilityOf(firstFoundItem));
         firstFoundItem.isSelected();
     }
 
@@ -22,10 +25,11 @@ public class IkeaProductSofaPage extends Page {
     @CacheLookup
     private WebElement addFirstItemToCart;
 
-    public void getFirstItemToCart() throws InterruptedException {
+    public void getFirstItemToCart() {
         getExecutor().executeScript("window.scrollBy(0,250)");
         getExecutor().executeScript("arguments[0].click();", addFirstItemToCart);
-        Thread.sleep(5000);
+        getWait().until(ExpectedConditions
+                .visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
     }
 
     @FindBy(xpath = "//input[@placeholder='What are you looking for?']")
