@@ -10,40 +10,45 @@ import static support.TestContest.*;
 
 public class IkeaProductTablePage extends Page {
 
-    @FindBy(xpath = "//body/main[@role='main']/div[@class='search']/div[@class='products search__grid-item']" +
-            "/section[@class='results']/div[@class='results__list']/div[@class='serp-grid search-grid']/div[3]")
-    @CacheLookup
-    private WebElement thirdFoundItem;
+  @FindBy(xpath = "(//*[name()='svg'][@class='svg-icon button__add-to-cart-icon'])[3]")
+  @CacheLookup
+  private WebElement thirdRowIcon;
 
-    public void getThirdItem(String table) {
-        getDriver().navigate().refresh();
-        getWait().until(ExpectedConditions.visibilityOf(thirdFoundItem));
-        thirdFoundItem.isSelected();
-    }
+  public void getThirdItem(String table) {
+    thirdRowIcon.isSelected();
+  }
 
-    @FindBy(xpath = "(//button[@type='button'])[13]")
-    @CacheLookup
-    private WebElement addThirdItemToCart;
+  @FindBy(xpath = "(//div[@class='serp-grid__item search-grid__item product-fragment'])[3]")
+  @CacheLookup
+  private WebElement thirdRowButtonItem;
 
-    public void addThirdItemToACart() {
-        getExecutor().executeScript("window.scrollBy(0,250)");
-        getExecutor().executeScript("arguments[0].click();", addThirdItemToCart);
-        getWait().until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
-    }
 
-    @FindBy(xpath = "(//div[@class='hnf-page-container'])[1]")
-    @CacheLookup
-    private WebElement pageHeader;
+  @FindBy(xpath = "(//button[@type='button'])[12]")
+  @CacheLookup
+  private WebElement addThirdItemToCart;
 
-    @FindBy(xpath = "//*[@class='hnf-btn__inner js-shopping-cart-icon']")
-    @CacheLookup
-    private WebElement cartButton;
+  public void addThirdItemToACart() throws InterruptedException {
+    getExecutor().executeScript("window.scrollBy(0,250)");
+    getExecutor().executeScript("arguments[0].scrollIntoView(true);", thirdRowButtonItem);
+    getExecutor().executeScript("arguments[0].click();", addThirdItemToCart);
+    Thread.sleep(10);
+    getWait().until(ExpectedConditions
+        .visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
+  }
 
-    public void getCartButton() {
-        getExecutor().executeScript("window.scrollBy(0,-250)");
-        getWait().until(ExpectedConditions.visibilityOf(pageHeader));
-        getWait().until(ExpectedConditions.visibilityOf(cartButton));
-        getExecutor().executeScript("arguments[0].click();", cartButton);
-    }
+  @FindBy(xpath = "(//div[@class='hnf-page-container'])[1]")
+  @CacheLookup
+  private WebElement pageHeader;
+
+  @FindBy(xpath = "//*[@class='hnf-btn__inner js-shopping-cart-icon']")
+  @CacheLookup
+  private WebElement cartButton;
+
+  public void getCartButton() throws InterruptedException {
+    getExecutor().executeScript("window.scrollBy(0,-250)");
+    getWait().until(ExpectedConditions.visibilityOf(pageHeader));
+    getWait().until(ExpectedConditions.visibilityOf(cartButton));
+    getExecutor().executeScript("arguments[0].click();", cartButton);
+    Thread.sleep(10);
+  }
 }

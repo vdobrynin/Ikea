@@ -5,21 +5,21 @@ import support.TestContest;
 
 public class Page {
 
-    private String url;
+  private String url;
 
-    public Page() {
-        PageFactory.initElements(TestContest.getDriver(), this);
-    }
+  public Page() {
+    PageFactory.initElements(TestContest.getDriver(), this);
+  }
 
-    public String getUrl() {
-        return url;
-    }
+  public String getUrl() {
+    return url;
+  }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
+  public void setUrl(String url) {
+    this.url = url;
+  }
 
-    public void open() {
-        TestContest.getDriver().get(url);
-    }
+  public void open() {
+    TestContest.getDriver().get(url);
+  }
 }
