@@ -15,7 +15,7 @@ public class IkeaProductSofaPage extends Page {
   @CacheLookup
   private WebElement firstFoundItem;
 
-  public void getFirstItem(String name) {
+  public void getFirstItem() {
     getWait().until(ExpectedConditions.visibilityOf(firstFoundItem));
     firstFoundItem.isSelected();
   }
@@ -27,7 +27,7 @@ public class IkeaProductSofaPage extends Page {
   public void getFirstItemToCart() throws InterruptedException {
     getExecutor().executeScript("window.scrollBy(0,250)");
     getExecutor().executeScript("arguments[0].click();", addFirstItemToCart);
-    Thread.sleep(10);
+    Thread.sleep(10000);
     getWait().until(ExpectedConditions
         .visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
   }
@@ -50,6 +50,6 @@ public class IkeaProductSofaPage extends Page {
     clearInput.click();
     getSearchBox.sendKeys(item);
     searchButton.click();
-    Thread.sleep(10);
+    Thread.sleep(10000);
   }
 }

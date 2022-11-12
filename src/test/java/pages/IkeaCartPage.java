@@ -1,6 +1,5 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -10,33 +9,24 @@ import static support.TestContest.*;
 
 public class IkeaCartPage extends Page {
 
-  @FindBy(xpath = "//*[@id='aria_product_description_20011408']/li[2]/span[1]")
+  @FindBy(xpath = "(//div[@class='productList_productlist__2kDY-']//ul[@id='aria_product_description_29420393'])[1]")
   @CacheLookup
-  private WebElement firstItem;
+  private WebElement firstItemInCart;
 
-  @FindBy(xpath = "//*[@id='aria_product_description_19384116']/li[2]/span[1]")
+  @FindBy(xpath = "(//div[@class='productList_productlist__2kDY-']//ul[@id='aria_product_description_19384116'])[1]")
   @CacheLookup
-  private WebElement secondItem;
+  private WebElement secondItemInCart;
 
-  public String getCartListResult1() throws InterruptedException {
-    getWait().until(ExpectedConditions
-        .visibilityOfElementLocated(By
-            .xpath("//*[@id='aria_product_description_20011408']/li[2]/span[1]")));
-
-    getExecutor().executeScript("arguments[0].scrollIntoView(true);", firstItem);
-    getWait().until(ExpectedConditions.visibilityOf(firstItem));
-    firstItem.click();
-    return firstItem.getText();
+  public String getCartListResult1() {
+    getWait().until(ExpectedConditions.visibilityOf(firstItemInCart));
+    firstItemInCart.click();
+    return firstItemInCart.getText();
   }
 
-  public String getCartListResult2() throws InterruptedException {
-    getWait().until(ExpectedConditions
-        .visibilityOfElementLocated(By
-            .xpath("//*[@id='aria_product_description_19384116']/li[2]/span[1]")));
-    getExecutor().executeScript("arguments[0].scrollIntoView(true);", secondItem);
-    getWait().until(ExpectedConditions.visibilityOf(secondItem));
-    secondItem.click();
-    return secondItem.getText();
+  public String getCartListResult2() {
+    getExecutor().executeScript("arguments[0].scrollIntoView(true);", secondItemInCart);
+    secondItemInCart.click();
+    return secondItemInCart.getText();
   }
 
   @FindBy(xpath = "//*[@class='cart-ingka-accordion-item-header__title']")
@@ -60,7 +50,7 @@ public class IkeaCartPage extends Page {
   @CacheLookup
   private WebElement errorMessage;
 
-  public String getErrorMessage(String text) {
+  public String getErrorMessage() {
     getExecutor().executeScript("arguments[0].scrollIntoView(true);", errorMessage);
     return errorMessage.getText();
   }

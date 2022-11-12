@@ -14,7 +14,7 @@ public class IkeaProductTablePage extends Page {
   @CacheLookup
   private WebElement thirdRowIcon;
 
-  public void getThirdItem(String table) {
+  public void getThirdItem() {
     thirdRowIcon.isSelected();
   }
 
@@ -31,7 +31,7 @@ public class IkeaProductTablePage extends Page {
     getExecutor().executeScript("window.scrollBy(0,250)");
     getExecutor().executeScript("arguments[0].scrollIntoView(true);", thirdRowButtonItem);
     getExecutor().executeScript("arguments[0].click();", addThirdItemToCart);
-    Thread.sleep(10);
+    Thread.sleep(10000);
     getWait().until(ExpectedConditions
         .visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
   }
@@ -49,6 +49,6 @@ public class IkeaProductTablePage extends Page {
     getWait().until(ExpectedConditions.visibilityOf(pageHeader));
     getWait().until(ExpectedConditions.visibilityOf(cartButton));
     getExecutor().executeScript("arguments[0].click();", cartButton);
-    Thread.sleep(10);
+    Thread.sleep(10000);
   }
 }

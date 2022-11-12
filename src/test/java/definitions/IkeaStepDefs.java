@@ -19,8 +19,8 @@ public class IkeaStepDefs {
   }
 
   @When("I go to input box {string}")
-  public void iGoToInputBox(String inputBox) {
-    new IkeaHomePage().searchInput(inputBox);
+  public void iGoToInputBox() {
+    new IkeaHomePage().searchInput();
   }
 
   @And("I search for {string} in store")
@@ -29,8 +29,8 @@ public class IkeaStepDefs {
   }
 
   @And("On product page I find {string} item")
-  public void onProductPageIFindItem(String text) {
-    new IkeaProductSofaPage().getFirstItem(text);
+  public void onProductPageIFindItem() {
+    new IkeaProductSofaPage().getFirstItem();
   }
 
   @Then("I add item to cart")
@@ -44,8 +44,8 @@ public class IkeaStepDefs {
   }
 
   @Then("I search for {string} at store")
-  public void iSearchForAtStore(String text) {
-    new IkeaProductTablePage().getThirdItem(text);
+  public void iSearchForAtStore() {
+    new IkeaProductTablePage().getThirdItem();
   }
 
   @Then("I add item to a cart")
@@ -77,7 +77,7 @@ public class IkeaStepDefs {
   @Then("I validate that {string} but error message is displayed")
   public void iValidateThatButErrorMessageIsDisplayed(String text) {
     IkeaCartPage errorDisplay = new IkeaCartPage();
-    String actualErrorText = errorDisplay.getErrorMessage(text);
+    String actualErrorText = errorDisplay.getErrorMessage();
 
     assertThat(actualErrorText).contains("You've added an invalid coupon code. Please try again.");
   }

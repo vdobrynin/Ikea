@@ -8,7 +8,6 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-
     plugin = {"pretty", "html:target/cucumber.html", "json:target/cucumber/report.json"},
     features = {"src/test/resources/features"},
     glue = {"definitions", "support"},
@@ -16,7 +15,6 @@ import org.junit.runner.RunWith;
 )
 
 public class TestRunner {
-
   @BeforeClass
   public static void setup() {
     System.out.println("BeforeAll");

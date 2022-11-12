@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 import static support.TestContest.getDriver;
 
 public class Hooks {
-
   @Before(order = 0)
   public void scenarioStart() {
     TestContest.initialize();
