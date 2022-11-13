@@ -10,26 +10,27 @@ import static support.TestContest.*;
 
 public class IkeaProductSofaPage extends Page {
 
-  @FindBy(xpath = "//body/main[@id='content']/div[@class='search']/div[@class='products search__grid-item']" +
-      "/section[@class='results']/div[@class='results__list']/div[@id='search-results']/div[1]")
+  @FindBy(xpath = "(//div[@class='serp-grid__item search-grid__item product-fragment'])[1]")
   @CacheLookup
   private WebElement firstFoundItem;
 
-  public void getFirstItem() {
-    getWait().until(ExpectedConditions.visibilityOf(firstFoundItem));
+  public void getFirstItem() throws InterruptedException {
+    getWait().until(ExpectedConditions
+        .visibilityOfElementLocated(By.xpath("(//div[@class='serp-grid__item search-grid__item product-fragment'])[1]")));
     firstFoundItem.isSelected();
   }
 
-  @FindBy(xpath = "(//button[@type='button'])[8]")
+  @FindBy(xpath = "(//body/main[@id='content']/div[@class='search']/div[@class='products search__grid-item']/div/section[@class='results']/div[@class='results__list']/div[@id='search-results']/div[1]//button[@id='19384116add_to_cart'])[1]")
+//  @FindBy(xpath = "(//button[@type='button'])[8]")
   @CacheLookup
   private WebElement addFirstItemToCart;
 
   public void getFirstItemToCart() throws InterruptedException {
     getExecutor().executeScript("window.scrollBy(0,250)");
     getExecutor().executeScript("arguments[0].click();", addFirstItemToCart);
-    Thread.sleep(10000);
-    getWait().until(ExpectedConditions
-        .visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
+    Thread.sleep(20000);
+    getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
+    getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='hnf-btn__inner js-shopping-cart-icon']")));
   }
 
   @FindBy(xpath = "//input[@placeholder='What are you looking for?']")
@@ -50,6 +51,5 @@ public class IkeaProductSofaPage extends Page {
     clearInput.click();
     getSearchBox.sendKeys(item);
     searchButton.click();
-    Thread.sleep(10000);
   }
 }

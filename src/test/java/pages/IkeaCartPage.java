@@ -1,5 +1,6 @@
 package pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -17,14 +18,19 @@ public class IkeaCartPage extends Page {
   @CacheLookup
   private WebElement secondItemInCart;
 
-  public String getCartListResult1() {
-    getWait().until(ExpectedConditions.visibilityOf(firstItemInCart));
+  public String getCartListResult1()   {
+    getWait().until(ExpectedConditions
+        .visibilityOfElementLocated(By
+            .xpath("(//div[@class='productList_productlist__2kDY-']//ul[@id='aria_product_description_29420393'])[1]")));
     firstItemInCart.click();
     return firstItemInCart.getText();
   }
 
   public String getCartListResult2() {
     getExecutor().executeScript("arguments[0].scrollIntoView(true);", secondItemInCart);
+    getWait().until(ExpectedConditions
+        .visibilityOfElementLocated(By
+            .xpath("(//div[@class='productList_productlist__2kDY-']//ul[@id='aria_product_description_19384116'])[1]")));
     secondItemInCart.click();
     return secondItemInCart.getText();
   }

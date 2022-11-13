@@ -18,18 +18,13 @@ public class IkeaStepDefs {
     new IkeaHomePage().open();
   }
 
-  @When("I go to input box {string}")
-  public void iGoToInputBox() {
-    new IkeaHomePage().searchInput();
-  }
-
   @And("I search for {string} in store")
-  public void iSearchForInStore(String text) throws InterruptedException {
+  public void iSearchForInStore(String text) {
     new IkeaHomePage().searchBox(text);
   }
 
   @And("On product page I find {string} item")
-  public void onProductPageIFindItem() {
+  public void onProductPageIFindItem() throws InterruptedException {
     new IkeaProductSofaPage().getFirstItem();
   }
 
@@ -59,7 +54,7 @@ public class IkeaStepDefs {
   }
 
   @And("I validate that two items in cart")
-  public void iValidateThatTwoItemsInCart() throws InterruptedException {
+  public void iValidateThatTwoItemsInCart() {
     IkeaCartPage cartPage = new IkeaCartPage();
 
     String actualText1 = cartPage.getCartListResult1();

@@ -12,19 +12,9 @@ public class IkeaHomePage extends Page {
 
   public IkeaHomePage() {
     setUrl("https://www.ikea.com/us/en/");
-    getDriver().navigate().refresh();
   }
 
-  @FindBy(xpath = "//input[@placeholder='What are you looking for?']")
-  @CacheLookup
-  private WebElement getToSearchBox;
-
-  public void searchInput() {
-    getWait().until(ExpectedConditions.visibilityOf(getToSearchBox));
-    getToSearchBox.isSelected();
-  }
-
-  @FindBy(xpath = "//*[@placeholder='What are you looking for?']")
+  @FindBy(xpath = "(//*[@placeholder='What are you looking for?'])[1]")
   @CacheLookup
   private WebElement getSearchBox;
 
@@ -32,10 +22,8 @@ public class IkeaHomePage extends Page {
   @CacheLookup
   private WebElement searchButton;
 
-  public void searchBox(String item) throws InterruptedException {
-    getWait().until(ExpectedConditions.visibilityOf(getSearchBox));
+  public void searchBox(String item) {
     getSearchBox.sendKeys(item);
     searchButton.click();
-    Thread.sleep(10000);
   }
 }
