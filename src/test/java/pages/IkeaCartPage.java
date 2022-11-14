@@ -30,22 +30,27 @@ public class IkeaCartPage extends Page {
     getExecutor().executeScript("arguments[0].scrollIntoView(true);", secondItemInCart);
     getWait().until(ExpectedConditions
         .visibilityOfElementLocated(By
-            .xpath("(//div[@class='productList_productlist__2kDY-']//ul[@id='aria_product_description_19384116'])[1]")));
+            .xpath("(//div[@class='productList_productlist__2kDY-']//ul[@id='aria_product_description_29420393'])[1]")));
     secondItemInCart.click();
     return secondItemInCart.getText();
   }
 
-  @FindBy(xpath = "//*[@class='cart-ingka-accordion-item-header__title']")
+  @FindBy(xpath = "(//div[@class='cart-ingka-ssr-container'])[3]")
   @CacheLookup
   private WebElement discountField;
+
+  @FindBy(xpath = "//*[@class='cart-ingka-accordion-item-header__title']")
+  @CacheLookup
+  private WebElement discountHeader;
 
   @FindBy(xpath = "//*[@id='discountCode']")
   @CacheLookup
   private WebElement discountCode;
 
   public void clickAndEnterDiscountCode(String text) {
-    getExecutor().executeScript("arguments[0].scrollIntoView(true);", discountField);
-    discountField.click();
+    getWait().until(ExpectedConditions.visibilityOf(discountField));
+    getExecutor().executeScript("arguments[0].scrollIntoView(true);", discountHeader);
+    discountHeader.click();
     discountCode.sendKeys(text);
 
     getExecutor().executeScript("arguments[0].scrollIntoView(true);", applyButton);

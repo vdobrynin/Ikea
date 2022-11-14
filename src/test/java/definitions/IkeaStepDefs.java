@@ -24,17 +24,17 @@ public class IkeaStepDefs {
   }
 
   @And("On product page I find {string} item")
-  public void onProductPageIFindItem() throws InterruptedException {
+  public void onProductPageIFindItem() {
     new IkeaProductSofaPage().getFirstItem();
   }
 
   @Then("I add item to cart")
-  public void iAddItemToCart() throws InterruptedException {
+  public void  iAddItemToCart() {
     new IkeaProductSofaPage().getFirstItemToCart();
   }
 
   @Then("I go to search bar at the top of the page to enter {string}")
-  public void iGoToSearchBarAtTheTopOfThePageToEnter(String text) throws InterruptedException {
+  public void iGoToSearchBarAtTheTopOfThePageToEnter(String text) {
     new IkeaProductSofaPage().search(text);
   }
 
@@ -44,12 +44,12 @@ public class IkeaStepDefs {
   }
 
   @Then("I add item to a cart")
-  public void iAddItemToACart() throws InterruptedException {
+  public void iAddItemToACart() {
     new IkeaProductTablePage().addThirdItemToACart();
   }
 
   @Then("I open cart")
-  public void iOpenCart() throws InterruptedException {
+  public void iOpenCart() {
     new IkeaProductTablePage().getCartButton();
   }
 

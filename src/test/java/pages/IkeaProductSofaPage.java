@@ -12,23 +12,29 @@ public class IkeaProductSofaPage extends Page {
 
   @FindBy(xpath = "(//div[@class='serp-grid__item search-grid__item product-fragment'])[1]")
   @CacheLookup
-  private WebElement firstFoundItem;
+  private WebElement firstRowItem;
 
-  public void getFirstItem() throws InterruptedException {
+  public void getFirstItem() {
     getWait().until(ExpectedConditions
         .visibilityOfElementLocated(By.xpath("(//div[@class='serp-grid__item search-grid__item product-fragment'])[1]")));
-    firstFoundItem.isSelected();
+    firstRowItem.isSelected();
   }
 
-  @FindBy(xpath = "(//body/main[@id='content']/div[@class='search']/div[@class='products search__grid-item']/div/section[@class='results']/div[@class='results__list']/div[@id='search-results']/div[1]//button[@id='19384116add_to_cart'])[1]")
-//  @FindBy(xpath = "(//button[@type='button'])[8]")
+  @FindBy(xpath = "(//*[name()='svg'][@class='svg-icon button__add-to-cart-icon'])[1]")
+  @CacheLookup
+  private WebElement firstItemSvg;
+
+  @FindBy(xpath = "(//button[@type='button'])[8]")
   @CacheLookup
   private WebElement addFirstItemToCart;
 
-  public void getFirstItemToCart() throws InterruptedException {
+  public void getFirstItemToCart() {
     getExecutor().executeScript("window.scrollBy(0,250)");
+    getExecutor().executeScript("arguments[0].scrollIntoView(true);", firstRowItem);
+    getWait().until(ExpectedConditions.visibilityOf(firstRowItem));
+    getExecutor().executeScript("arguments[0].scrollIntoView(true);", firstItemSvg);
+    getWait().until(ExpectedConditions.visibilityOf(firstItemSvg));
     getExecutor().executeScript("arguments[0].click();", addFirstItemToCart);
-    Thread.sleep(20000);
     getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
     getWait().until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='hnf-btn__inner js-shopping-cart-icon']")));
   }
@@ -45,7 +51,7 @@ public class IkeaProductSofaPage extends Page {
   @CacheLookup
   private WebElement clearInput;
 
-  public void search(String item) throws InterruptedException {
+  public void search(String item) {
     getExecutor().executeScript("window.scrollBy(0,-250)");
     getExecutor().executeScript("arguments[0].click();", getSearchBox);
     clearInput.click();
