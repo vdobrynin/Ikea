@@ -1,72 +1,48 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static support.TestContest.*;
 
 public class IkeaCartPage extends Page {
 
   @FindBy(xpath = "(//div[@class='productList_productlist__2kDY-']//ul[@id='aria_product_description_29420393'])[1]")
-  @CacheLookup
   private WebElement firstItemInCart;
 
-  @FindBy(xpath = "(//div[@class='productList_productlist__2kDY-']//ul[@id='aria_product_description_19384116'])[1]")
-  @CacheLookup
-  private WebElement secondItemInCart;
-
-  public String getCartListResult1()   {
-    getWait().until(ExpectedConditions
-        .visibilityOfElementLocated(By
-            .xpath("(//div[@class='productList_productlist__2kDY-']//ul[@id='aria_product_description_29420393'])[1]")));
-    firstItemInCart.click();
+  public String getCartListResult1() {
     return firstItemInCart.getText();
   }
 
+  @FindBy(xpath = "(//div[@class='productList_productlist__2kDY-']//ul[@id='aria_product_description_19384116'])[1]")
+  private WebElement secondItemInCart;
+
   public String getCartListResult2() {
     getExecutor().executeScript("arguments[0].scrollIntoView(true);", secondItemInCart);
-    getWait().until(ExpectedConditions
-        .visibilityOfElementLocated(By
-            .xpath("(//div[@class='productList_productlist__2kDY-']//ul[@id='aria_product_description_29420393'])[1]")));
-    secondItemInCart.click();
     return secondItemInCart.getText();
   }
 
-  @FindBy(xpath = "(//div[@class='cart-ingka-ssr-container'])[3]")
-  @CacheLookup
-  private WebElement discountField;
-
-  @FindBy(xpath = "//*[@class='cart-ingka-accordion-item-header__title']")
-  @CacheLookup
+  @FindBy(xpath = "//div[@class='cart-ingka-ssr-label'][contains(.,'Have a discount code?')]")
   private WebElement discountHeader;
 
-  @FindBy(xpath = "//*[@id='discountCode']")
-  @CacheLookup
+  @FindBy(xpath = "//input[contains(@id,'discountCode')]")
   private WebElement discountCode;
 
+  @FindBy(xpath = "(//span[contains(@class,'cart-ingka-btn__inner')])[3]")
+  private WebElement applyButton;
+
   public void clickAndEnterDiscountCode(String text) {
-    getWait().until(ExpectedConditions.visibilityOf(discountField));
-    getExecutor().executeScript("arguments[0].scrollIntoView(true);", discountHeader);
     discountHeader.click();
     discountCode.sendKeys(text);
-
     getExecutor().executeScript("arguments[0].scrollIntoView(true);", applyButton);
     getExecutor().executeScript("arguments[0].click();", applyButton);
   }
 
   @FindBy(xpath = "//*[@class='cart-ingka-form-field__message']")
-  @CacheLookup
   private WebElement errorMessage;
 
   public String getErrorMessage() {
     getExecutor().executeScript("arguments[0].scrollIntoView(true);", errorMessage);
     return errorMessage.getText();
   }
-
-  @FindBy(xpath = "//*[@type='submit']//*[@class='cart-ingka-btn__inner']")
-  @CacheLookup
-  private WebElement applyButton;
 }

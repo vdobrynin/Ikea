@@ -4,7 +4,6 @@ import org.openqa.selenium.support.PageFactory;
 import support.TestContest;
 
 public class Page {
-
   private String url;
 
   public Page() {
