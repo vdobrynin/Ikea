@@ -11,7 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <selenium-java-version>3.141.59</selenium-java-version>
-        <cucumber-java-version>4.4.0</cucumber-java-version>
+        <cucumber-java-version>7.10.0</cucumber-java-version>
         <maven-surefire-plugin-version>3.0.0-M3</maven-surefire-plugin-version>
     </properties>
 
@@ -97,6 +97,12 @@
         <dependency>
             <groupId>io.cucumber</groupId>
             <artifactId>cucumber-java</artifactId>
+            <version>${cucumber-java-version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-core</artifactId>
             <version>${cucumber-java-version}</version>
             <scope>test</scope>
         </dependency>

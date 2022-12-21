@@ -7,14 +7,14 @@ import static support.TestContest.*;
 
 public class IkeaCartPage extends Page {
 
-  @FindBy(xpath = "(//div[@class='productList_productlist__2kDY-']//ul[@id='aria_product_description_29420393'])[1]")
+  @FindBy(xpath = "(//div[contains(@class,'product_contents__ha7uc')])[1]")
   private WebElement firstItemInCart;
 
   public String getCartListResult1() {
     return firstItemInCart.getText();
   }
 
-  @FindBy(xpath = "(//div[@class='productList_productlist__2kDY-']//ul[@id='aria_product_description_19384116'])[1]")
+  @FindBy(xpath = "(//div[contains(@class,'product_contents__ha7uc')])[2]")
   private WebElement secondItemInCart;
 
   public String getCartListResult2() {
@@ -22,13 +22,13 @@ public class IkeaCartPage extends Page {
     return secondItemInCart.getText();
   }
 
-  @FindBy(xpath = "//div[@class='cart-ingka-ssr-label'][contains(.,'Have a discount code?')]")
+  @FindBy(xpath = "(//span[@class='cart-ingka-accordion-item-header__title'])[1]")
   private WebElement discountHeader;
 
-  @FindBy(xpath = "//input[contains(@id,'discountCode')]")
+  @FindBy(xpath = "(//input[contains(@id,'discountCode')])[1]")
   private WebElement discountCode;
 
-  @FindBy(xpath = "(//span[contains(@class,'cart-ingka-btn__inner')])[3]")
+  @FindBy(xpath = "(//button[@type='submit'])[1]")
   private WebElement applyButton;
 
   public void clickAndEnterDiscountCode(String text) {
@@ -38,7 +38,7 @@ public class IkeaCartPage extends Page {
     getExecutor().executeScript("arguments[0].click();", applyButton);
   }
 
-  @FindBy(xpath = "//*[@class='cart-ingka-form-field__message']")
+  @FindBy(xpath = "(//span[@class='cart-ingka-form-field__message'])[1]")
   private WebElement errorMessage;
 
   public String getErrorMessage() {

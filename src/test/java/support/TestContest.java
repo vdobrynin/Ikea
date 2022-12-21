@@ -74,6 +74,7 @@ public class TestContest {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--start-maximized");
         chromeOptions.setExperimentalOption("prefs", chromePreferences);
+        chromeOptions.addExtensions(new File(System.getProperty("user.dir") + "/src/test/resources/config/SelectorsHub 4.6.1.0.crx"));
         if (isHeadless) {
           chromeOptions.setHeadless(false);
           chromeOptions.addArguments("--window-size=1920,1200, --force");

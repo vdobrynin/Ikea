@@ -9,7 +9,7 @@ import static support.TestContest.*;
 
 public class IkeaProductTablePage extends Page {
 
-  @FindBy(xpath = "(//*[name()='svg'][@class='svg-icon button__add-to-cart-icon'])[3]")
+  @FindBy(xpath = "(//span[@class='pip-btn__inner'])[7]")
   private WebElement thirdRowIcon;
 
   public void getThirdItemIcon() {
@@ -17,13 +17,14 @@ public class IkeaProductTablePage extends Page {
     thirdRowIcon.isSelected();
   }
 
-  @FindBy(xpath = "(//button[@type='button'])[12]")
+  @FindBy(xpath = "(//button[@type='button'])[14]")
   private WebElement addThirdItemToCart;
 
-  public void addThirdItemToACart() {
+  public void addThirdItemToACart() throws InterruptedException {
     getExecutor().executeScript("arguments[0].scrollIntoView(true);", thirdRowIcon);
     getWait().until(ExpectedConditions.visibilityOf(thirdRowIcon));
     getExecutor().executeScript("arguments[0].click();", addThirdItemToCart);
+    Thread.sleep(10000);
     getWait().until(ExpectedConditions
         .visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
   }

@@ -1,9 +1,9 @@
 package definitions;
 
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.cucumber.java.en.Given;
 import pages.IkeaCartPage;
 import pages.IkeaHomePage;
 import pages.IkeaProductSofaPage;
@@ -13,28 +13,30 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class IkeaStepDefs {
 
-  @Given("I go to {string} page")
-  public void iGoToPage() {
+  @Given("I go to Ikea page")
+  public void iGoToIkeaPage() {
+
     new IkeaHomePage().open();
   }
 
-  @And("I search for {string} in store")
-  public void iSearchForInStore(String text) {
-    new IkeaHomePage().searchBox(text);
+  @Then("I search for {string} in store")
+  public void iSearchForInStore(String sofa) {
+
+    new IkeaHomePage().searchBox(sofa);
   }
 
   @Then("I add item to cart")
-  public void iAddItemToCart() {
+  public void iAddItemToCart() throws InterruptedException {
     new IkeaProductSofaPage().getFirstItemToCart();
   }
 
   @Then("I go to search bar at the top of the page to enter {string}")
-  public void iGoToSearchBarAtTheTopOfThePageToEnter(String text) {
-    new IkeaProductSofaPage().search(text);
+  public void iGoToSearchBarAtTheTopOfThePageToEnter(String table) {
+    new IkeaProductSofaPage().search(table);
   }
 
   @Then("I add item to a cart")
-  public void iAddItemToACart() {
+  public void iAddItemToACart() throws InterruptedException {
     new IkeaProductTablePage().addThirdItemToACart();
   }
 
@@ -43,7 +45,7 @@ public class IkeaStepDefs {
     new IkeaProductTablePage().getCartButton();
   }
 
-  @And("I validate that two items in cart")
+  @Then("I validate that two items in cart")
   public void iValidateThatTwoItemsInCart() {
     IkeaCartPage cartPage = new IkeaCartPage();
     String actualText1 = cartPage.getCartListResult1();
@@ -59,9 +61,9 @@ public class IkeaStepDefs {
   }
 
   @Then("I validate that {string} but error message is displayed")
-  public void iValidateThatButErrorMessageIsDisplayed() {
+  public void iValidateThatButErrorMessageIsDisplayed(String errorMessage) {
     IkeaCartPage errorDisplay = new IkeaCartPage();
     String actualErrorText = errorDisplay.getErrorMessage();
-    assertThat(actualErrorText).contains("You've added an invalid coupon code. Please try again.");
+    assertThat(actualErrorText).contains(errorMessage);
   }
 }
