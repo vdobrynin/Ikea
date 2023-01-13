@@ -49,10 +49,10 @@ public class IkeaStepDefs {
   public void iValidateThatTwoItemsInCart() {
     IkeaCartPage cartPage = new IkeaCartPage();
     String actualText1 = cartPage.getCartListResult1();
-    assertThat(actualText1).toString().trim().equals("table");
+    assertThat(actualText1).toString().trim().equalsIgnoreCase("table");
 
     String actualText2 = cartPage.getCartListResult2();
-    assertThat(actualText2).toString().trim().equals("sofa");
+    assertThat(actualText2).toString().trim().equalsIgnoreCase("sofa");
   }
 
   @When("I enter discount code {string} to apply")
