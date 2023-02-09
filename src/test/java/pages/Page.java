@@ -1,13 +1,13 @@
 package pages;
 
 import org.openqa.selenium.support.PageFactory;
-import support.TestContest;
+import support.TestContext;
 
 public class Page {
   private String url;
 
   public Page() {
-    PageFactory.initElements(TestContest.getDriver(), this);
+    PageFactory.initElements(TestContext.getDriver(), this);
   }
 
   public String getUrl() {
@@ -19,6 +19,6 @@ public class Page {
   }
 
   public void open() {
-    TestContest.getDriver().get(url);
+    TestContext.getDriver().get(url);
   }
 }

@@ -21,7 +21,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TestContest {
+public class TestContext {
 
   private static WebDriver driver;
 

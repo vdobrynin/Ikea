@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import static support.TestContest.*;
+import static support.TestContext.*;
 
 public class IkeaProductTablePage extends Page {
 

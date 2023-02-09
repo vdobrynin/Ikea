@@ -3,7 +3,7 @@ package pages;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import static support.TestContest.getWait;
+import static support.TestContext.getWait;
 
 public class IkeaHomePage extends Page {
 
