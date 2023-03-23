@@ -1,7 +1,5 @@
 package support;
 
-
-
 import io.cucumber.junit.Cucumber;
 import io.cucumber.testng.CucumberOptions;
 import org.junit.AfterClass;

@@ -38,7 +38,7 @@ public class IkeaCartPage extends Page {
     getExecutor().executeScript("arguments[0].click();", applyButton);
   }
 
-  @FindBy(xpath = "(//span[@class='cart-ingka-form-field__message'])[1]")
+  @FindBy(xpath = "//span[@id='discount-code__error']")
   private WebElement errorMessage;
 
   public String getErrorMessage() {
