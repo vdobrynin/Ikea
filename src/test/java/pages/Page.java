@@ -7,11 +7,12 @@ public class Page {
   private String url;
 
   public Page() {
-    PageFactory.initElements(TestContext.getDriver(), this);
+      PageFactory
+          .initElements(TestContext.getDriver(), this);
   }
 
   public String getUrl() {
-    return url;
+      return url;
   }
 
   public void setUrl(String url) {
@@ -19,6 +20,7 @@ public class Page {
   }
 
   public void open() {
-    TestContext.getDriver().get(url);
+      TestContext
+          .getDriver().get(url);
   }
 }
