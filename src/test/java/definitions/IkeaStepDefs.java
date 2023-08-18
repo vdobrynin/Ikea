@@ -12,7 +12,6 @@ import pages.IkeaProductTablePage;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class IkeaStepDefs {
-
     @Given("I go to Ikea page")
     public void iGoToIkeaPage() {
         new IkeaHomePage()

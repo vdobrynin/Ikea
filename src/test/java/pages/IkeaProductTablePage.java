@@ -8,39 +8,33 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import static support.TestContext.*;
 
 public class IkeaProductTablePage extends Page {
-
     @FindBy(xpath = "(//*[name()='svg'][@class='svg-icon btn__icon'])[5]")
     private WebElement thirdRowIcon;
 
     public void getThirdItemIcon() {
         getWait()
-            .until(ExpectedConditions
-                .visibilityOf(thirdRowIcon));
-        getWait()
-            .until(ExpectedConditions
-                .visibilityOf(thirdRowIcon));
+            .until(ExpectedConditions.visibilityOf(thirdRowIcon));
         thirdRowIcon
             .isDisplayed();
     }
 
-    @FindBy(xpath = "(//button[@type='button'])[15]")
+    @FindBy(xpath = "(//button[@type='button'])[12]")
     private WebElement addThirdItemToCart;
 
     public void addThirdItemToACart() throws InterruptedException {
+        Thread.sleep(5000);
         getExecutor()
             .executeScript("window.scrollBy(0,250)");
         getExecutor()
             .executeScript("arguments[0].scrollIntoView(true);", thirdRowIcon);
         getWait()
-            .until(ExpectedConditions
-                .visibilityOf(thirdRowIcon));
+            .until(ExpectedConditions.visibilityOf(thirdRowIcon));
         getExecutor()
             .executeScript("arguments[0].click();", addThirdItemToCart);
-        Thread.sleep(10000);
+        Thread.sleep(7000);
         getWait()
             .until(ExpectedConditions
-            .visibilityOfElementLocated(By
-                .xpath("(//div[@class='hnf-page-container'])[1]")));
+            .visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
     }
 
     @FindBy(xpath = "(//div[@class='hnf-page-container'])[1]")
@@ -53,11 +47,9 @@ public class IkeaProductTablePage extends Page {
         getExecutor()
             .executeScript("window.scrollBy(0,-250)");
         getWait()
-            .until(ExpectedConditions
-                .visibilityOf(pageHeader));
+            .until(ExpectedConditions.visibilityOf(pageHeader));
         getWait()
-            .until(ExpectedConditions
-                .visibilityOf(cartButton));
+            .until(ExpectedConditions.visibilityOf(cartButton));
         getExecutor()
             .executeScript("arguments[0].click();", cartButton);
     }

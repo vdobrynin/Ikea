@@ -2,11 +2,11 @@ package pages;
 
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import static support.TestContext.*;
 
 public class IkeaCartPage extends Page {
-
     @FindBy(xpath = "(//div[contains(@class,'product_contents__ha7uc')])[1]")
     private WebElement firstItemInCart;
 
@@ -33,6 +33,10 @@ public class IkeaCartPage extends Page {
     private WebElement applyButton;
 
     public void clickAndEnterDiscountCode(String text) {
+        getExecutor()
+            .executeScript("window.scrollBy(0,-200)");;
+        getWait()
+            .until(ExpectedConditions.visibilityOf(discountHeader));
         discountHeader
             .click();
         discountCode

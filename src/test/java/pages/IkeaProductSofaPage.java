@@ -8,7 +8,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import static support.TestContext.*;
 
 public class IkeaProductSofaPage extends Page {
-
     @FindBy(xpath = "(//*[name()='svg'][@class='svg-icon btn__icon'])[1]")
     private WebElement firstItemSvg;
 
@@ -25,13 +24,9 @@ public class IkeaProductSofaPage extends Page {
         getExecutor()
             .executeScript("window.scrollBy(0,-250)");
         getWait()
-            .until(ExpectedConditions
-                .visibilityOfElementLocated(By
-                    .xpath("(//div[@class='hnf-page-container'])[1]")));
+            .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
         getWait()
-            .until(ExpectedConditions
-                .visibilityOfElementLocated(By
-                    .xpath("//*[@class='hnf-btn__inner js-shopping-cart-icon']")));
+            .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='hnf-btn__inner js-shopping-cart-icon']")));
         getExecutor()
             .executeScript("window.scrollBy(0,-250)");
         Thread.sleep(5000);
@@ -53,13 +48,11 @@ public class IkeaProductSofaPage extends Page {
         getExecutor()
             .executeScript("arguments[0].scrollIntoView(true);", headerSearch);
         getWait()
-            .until(ExpectedConditions
-                .visibilityOf(headerSearch));
+            .until(ExpectedConditions.visibilityOf(headerSearch));
         getExecutor()
             .executeScript("window.scrollBy(0,-250)");
         getWait()
-            .until(ExpectedConditions
-                .visibilityOf(getSearchBox));
+            .until(ExpectedConditions.visibilityOf(getSearchBox));
         getExecutor()
             .executeScript("arguments[0].click();", getSearchBox);
         clearInput
@@ -67,8 +60,7 @@ public class IkeaProductSofaPage extends Page {
         getSearchBox
             .sendKeys(text);
         getWait()
-            .until(ExpectedConditions
-                .visibilityOf(searchButton));
+            .until(ExpectedConditions.visibilityOf(searchButton));
         searchButton
             .click();
     }
