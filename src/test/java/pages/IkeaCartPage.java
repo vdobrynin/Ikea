@@ -33,8 +33,8 @@ public class IkeaCartPage extends Page {
     private WebElement applyButton;
 
     public void clickAndEnterDiscountCode(String text) {
-        getExecutor()
-            .executeScript("window.scrollBy(0,-200)");;
+//        getExecutor()
+//            .executeScript("window.scrollBy(0,-100)");
         getWait()
             .until(ExpectedConditions.visibilityOf(discountHeader));
         discountHeader
