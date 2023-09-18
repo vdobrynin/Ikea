@@ -75,8 +75,8 @@ public class TestContext {
                 chromeOptions.addArguments("--start-maximized");
                 chromeOptions.setExperimentalOption("prefs", chromePreferences);
                 chromeOptions.addExtensions(new File(System.getProperty("user.dir") + "/src/test/resources/config/SelectorsHub 4.6.2.0.crx"));
-                if (isHeadless) {
-                    chromeOptions.setHeadless(false);
+                if (!isHeadless) {       // <-- headed // --> (!isHeadless)
+                    chromeOptions.setHeadless(true);  // --> (true)
                     chromeOptions.addArguments("--window-size=1920,1200, --force");
                     chromeOptions.addArguments("--disable-gpu");
                 }
