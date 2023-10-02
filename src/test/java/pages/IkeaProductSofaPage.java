@@ -8,6 +8,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import static support.TestContext.*;
 
 public class IkeaProductSofaPage extends Page {
+
     @FindBy(xpath = "(//*[name()='svg'][@class='svg-icon btn__icon'])[1]")
     private WebElement firstItemSvg;
 

@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import static support.TestContext.*;
 
 public class IkeaCartPage extends Page {
+
     @FindBy(xpath = "(//div[contains(@class,'product_contents__ha7uc')])[1]")
     private WebElement firstItemInCart;
 
@@ -18,6 +19,7 @@ public class IkeaCartPage extends Page {
     private WebElement secondItemInCart;
 
     public String getCartListResult2() {
+
         getExecutor()
             .executeScript("arguments[0].scrollIntoView(true);", secondItemInCart);
         return secondItemInCart.getText();
@@ -33,6 +35,7 @@ public class IkeaCartPage extends Page {
     private WebElement applyButton;
 
     public void clickAndEnterDiscountCode(String text) {
+
         getExecutor()
             .executeScript("window.scrollBy(0,-300)");
         getWait()
@@ -51,6 +54,7 @@ public class IkeaCartPage extends Page {
     private WebElement errorMessage;
 
     public String getErrorMessage() {
+
         getExecutor()
             .executeScript("arguments[0].scrollIntoView(true);", errorMessage);
         return errorMessage
