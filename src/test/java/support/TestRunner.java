@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
     tags = "@predefined" // same as VM option -Dcucumber.options="--tags @predefined"
 )
 public class TestRunner extends AbstractTestNGCucumberTests {
+
   @BeforeClass
   public static void setup() {
       System.out.println("BeforeAll");
