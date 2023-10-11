@@ -74,12 +74,15 @@ public class TestContext {
                 chromePreferences.put("password_manager_enabled", false);
                 chromePreferences.put("safebrowsing.enabled", "true");
                 ChromeOptions chromeOptions = new ChromeOptions();
-                chromeOptions.addArguments("--start-maximized");
+                chromeOptions.addArguments("--window-size=1920,1200");
+                chromeOptions.addArguments("--remote-allow-origins=*");
                 chromeOptions.setExperimentalOption("prefs", chromePreferences);
-                chromeOptions.addExtensions(new File(System.getProperty("user.dir") + "/src/test/resources/config/SelectorsHub 4.6.2.0.crx"));
+                chromeOptions.addExtensions(new File(System
+                    .getProperty("user.dir") + "/src/test/resources/config/SelectorsHub 4.6.2.0.crx"));
                 if (!isHeadless) {       // <-- headed // --> (!isHeadless)
-                    chromeOptions.setHeadless(true);  // --> (true)
-                    chromeOptions.addArguments("--window-size=1920,1200, --force");
+                    chromeOptions.addArguments("--window-size=1920,1200");
+                    chromeOptions.addArguments("--headless=new");
+                    chromeOptions.addArguments("--remote-allow-origins=*");
                     chromeOptions.addArguments("--disable-gpu");
                 }
                 driver = new ChromeDriver(chromeOptions);
