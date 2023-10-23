@@ -43,11 +43,10 @@ public class TestContext {
         return new Actions(driver);
     }
 
-    public static void initialize() {
-        initialize("chrome", false);
-    }
+    public static void initialize() { initialize("chrome", false); }
 
     public static void teardown() {
+        driver.close();
         driver.quit();
     }
 

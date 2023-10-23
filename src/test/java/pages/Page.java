@@ -7,10 +7,7 @@ public class Page {
 
   private String url;
 
-  public Page() {
-      PageFactory
-          .initElements(TestContext.getDriver(), this);
-  }
+  public Page() { PageFactory.initElements(TestContext.getDriver(), this); }
 
   public String getUrl() {
       return url;
@@ -20,8 +17,5 @@ public class Page {
     this.url = url;
   }
 
-  public void open() {
-      TestContext
-          .getDriver().get(url);
-  }
+  public void open() { TestContext.getDriver().get(url); }
 }
