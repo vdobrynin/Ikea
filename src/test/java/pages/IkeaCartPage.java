@@ -38,7 +38,7 @@ public class IkeaCartPage extends Page {
 
         getExecutor()
             .executeScript("window.scrollBy(0,-300)");
-        getWait()
+        fluentWait
             .until(ExpectedConditions.visibilityOf(discountHeader));
         discountHeader
             .click();

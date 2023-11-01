@@ -16,17 +16,18 @@ public class IkeaProductSofaPage extends Page {
     private WebElement addFirstItemToCart;
 
     public void getFirstItemToCart() throws InterruptedException {
+
         getExecutor()
             .executeScript("arguments[0].scrollIntoView(true);", firstItemSvg);
-        getWait()
+        fluentWait
             .until(ExpectedConditions.visibilityOf(firstItemSvg));
         getExecutor()
             .executeScript("arguments[0].click();", addFirstItemToCart);
         getExecutor()
             .executeScript("window.scrollBy(0,-250)");
-        getWait()
+        fluentWait
             .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
-        getWait()
+        fluentWait
             .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='hnf-btn__inner js-shopping-cart-icon']")));
         getExecutor()
             .executeScript("window.scrollBy(0,-250)");
@@ -46,13 +47,14 @@ public class IkeaProductSofaPage extends Page {
     private WebElement searchButton;
 
     public void search(String text) {
+
         getExecutor()
             .executeScript("arguments[0].scrollIntoView(true);", headerSearch);
-        getWait()
+        fluentWait
             .until(ExpectedConditions.visibilityOf(headerSearch));
         getExecutor()
             .executeScript("window.scrollBy(0,-250)");
-        getWait()
+        fluentWait
             .until(ExpectedConditions.visibilityOf(getSearchBox));
         getExecutor()
             .executeScript("arguments[0].click();", getSearchBox);
@@ -60,7 +62,7 @@ public class IkeaProductSofaPage extends Page {
             .click();
         getSearchBox
             .sendKeys(text);
-        getWait()
+        fluentWait
             .until(ExpectedConditions.visibilityOf(searchButton));
         searchButton
             .click();

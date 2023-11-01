@@ -4,11 +4,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
+import static support.TestContext.fluentWait;
 import static support.TestContext.getWait;
 
 public class IkeaHomePage extends Page {
 
     public IkeaHomePage() {
+
         setUrl("https://www.ikea.com/us/en/");
     }
 
@@ -19,12 +21,11 @@ public class IkeaHomePage extends Page {
     private WebElement searchButton;
 
     public void searchBox(String item) {
+
         getSearchBox
             .sendKeys(item);
-        getWait()
-            .until(ExpectedConditions
-                .visibilityOf(searchButton));
-        searchButton
-            .click();
+        fluentWait
+            .until(ExpectedConditions.visibilityOf(searchButton));
+        searchButton.click();
     }
 }

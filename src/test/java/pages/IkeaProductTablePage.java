@@ -13,7 +13,8 @@ public class IkeaProductTablePage extends Page {
     private WebElement thirdRowIcon;
 
     public void getThirdItemIcon() {
-        getWait()
+
+        fluentWait
             .until(ExpectedConditions.visibilityOf(thirdRowIcon));
         thirdRowIcon
             .isDisplayed();
@@ -23,17 +24,18 @@ public class IkeaProductTablePage extends Page {
     private WebElement addThirdItemToCart;
 
     public void addThirdItemToACart() throws InterruptedException {
+
         Thread.sleep(5000);
         getExecutor()
             .executeScript("window.scrollBy(0,250)");
         getExecutor()
             .executeScript("arguments[0].scrollIntoView(true);", thirdRowIcon);
-        getWait()
+        fluentWait
             .until(ExpectedConditions.visibilityOf(thirdRowIcon));
         getExecutor()
             .executeScript("arguments[0].click();", addThirdItemToCart);
         Thread.sleep(7000);
-        getWait()
+        fluentWait
             .until(ExpectedConditions
             .visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
     }
@@ -45,11 +47,12 @@ public class IkeaProductTablePage extends Page {
     private WebElement cartButton;
 
     public void getCartButton() {
+
         getExecutor()
             .executeScript("window.scrollBy(0,-250)");
-        getWait()
+        fluentWait
             .until(ExpectedConditions.visibilityOf(pageHeader));
-        getWait()
+        fluentWait
             .until(ExpectedConditions.visibilityOf(cartButton));
         getExecutor()
             .executeScript("arguments[0].click();", cartButton);
