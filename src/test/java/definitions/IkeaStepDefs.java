@@ -61,15 +61,11 @@ public class IkeaStepDefs {
         IkeaCartPage cartPage = new IkeaCartPage();
         String actualText1 = cartPage.getCartListResult1();
         assertThat(actualText1)
-            .toString()
-            .trim()
-            .equalsIgnoreCase("table");
+            .containsIgnoringCase("table");
 
         String actualText2 = cartPage.getCartListResult2();
         assertThat(actualText2)
-            .toString()
-            .trim()
-            .equalsIgnoreCase("sofa");
+            .containsIgnoringCase("sofa");
     }
 
     @When("I enter discount code {string} to apply")

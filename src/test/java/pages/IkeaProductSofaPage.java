@@ -9,7 +9,7 @@ import static support.TestContext.*;
 
 public class IkeaProductSofaPage extends Page {
 
-    @FindBy(xpath = "(//*[name()='svg'][@class='svg-icon btn__icon'])[1]")
+    @FindBy(xpath = "(//span[@class='btn__inner'])[1]")
     private WebElement firstItemSvg;
 
     @FindBy(xpath = "(//button[@type='button'])[8]")
@@ -26,9 +26,13 @@ public class IkeaProductSofaPage extends Page {
         getExecutor()
             .executeScript("window.scrollBy(0,-250)");
         fluentWait
-            .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
+            .until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                .xpath("(//div[@class='hnf-page-container'])[1]")));
         fluentWait
-            .until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class='hnf-btn__inner js-shopping-cart-icon']")));
+            .until(ExpectedConditions
+                .visibilityOfElementLocated(By
+                .xpath("//*[@class='hnf-btn__inner js-shopping-cart-icon']")));
         getExecutor()
             .executeScript("window.scrollBy(0,-250)");
         Thread.sleep(5000);
