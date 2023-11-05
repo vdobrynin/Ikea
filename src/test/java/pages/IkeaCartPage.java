@@ -12,6 +12,9 @@ public class IkeaCartPage extends Page {
     private WebElement firstItemInCart;
 
     public String getCartListResult1() {
+
+        fluentWait
+            .until(ExpectedConditions.visibilityOf(firstItemInCart));
         return firstItemInCart.getText();
     }
 
