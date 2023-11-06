@@ -8,7 +8,7 @@ import static support.TestContext.*;
 
 public class IkeaCartPage extends Page {
 
-    @FindBy(xpath = "(//div[contains(@class,'product_contents__ha7uc')])[1]")
+    @FindBy(xpath = "(//div[@data-testid='product_list_product_group_items'])[1]")
     private WebElement firstItemInCart;
 
     public String getCartListResult1() {
@@ -18,13 +18,11 @@ public class IkeaCartPage extends Page {
         return firstItemInCart.getText();
     }
 
-    @FindBy(xpath = "(//div[contains(@class,'product_contents__ha7uc')])[2]")
+    @FindBy(xpath = "(//div[@data-testid='product_list_product_group_items'])[1]")
     private WebElement secondItemInCart;
 
     public String getCartListResult2() {
 
-        getExecutor()
-            .executeScript("arguments[0].scrollIntoView(true);", secondItemInCart);
         return secondItemInCart.getText();
     }
 

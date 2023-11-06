@@ -9,22 +9,18 @@ import static support.TestContext.*;
 
 public class IkeaProductSofaPage extends Page {
 
-    @FindBy(xpath = "(//span[@class='btn__inner'])[1]")
-    private WebElement firstItemSvg;
+    @FindBy(xpath = "(//div[@class='plp-button-container'])[1]")
+    private WebElement firstItemButton;
 
-    @FindBy(xpath = "(//button[@type='button'])[8]")
+    @FindBy(xpath = "(//span[@class='btn__inner'])[1]")
     private WebElement addFirstItemToCart;
 
     public void getFirstItemToCart() throws InterruptedException {
 
         getExecutor()
-            .executeScript("arguments[0].scrollIntoView(true);", firstItemSvg);
-        fluentWait
-            .until(ExpectedConditions.visibilityOf(firstItemSvg));
+            .executeScript("window.scrollBy(0,200)");
         getExecutor()
             .executeScript("arguments[0].click();", addFirstItemToCart);
-        getExecutor()
-            .executeScript("window.scrollBy(0,-250)");
         fluentWait
             .until(ExpectedConditions
                 .visibilityOfElementLocated(By
@@ -33,9 +29,6 @@ public class IkeaProductSofaPage extends Page {
             .until(ExpectedConditions
                 .visibilityOfElementLocated(By
                 .xpath("//*[@class='hnf-btn__inner js-shopping-cart-icon']")));
-        getExecutor()
-            .executeScript("window.scrollBy(0,-250)");
-        Thread.sleep(5000);
     }
 
     @FindBy(xpath = "(//span[@class='search-box__button-wrapper-item'])[1]")
@@ -53,11 +46,9 @@ public class IkeaProductSofaPage extends Page {
     public void search(String text) {
 
         getExecutor()
-            .executeScript("arguments[0].scrollIntoView(true);", headerSearch);
-        fluentWait
-            .until(ExpectedConditions.visibilityOf(headerSearch));
+            .executeScript("window.scrollBy(0,-500)");
         getExecutor()
-            .executeScript("window.scrollBy(0,-250)");
+            .executeScript("arguments[0].scrollIntoView(true);", headerSearch);
         fluentWait
             .until(ExpectedConditions.visibilityOf(getSearchBox));
         getExecutor()

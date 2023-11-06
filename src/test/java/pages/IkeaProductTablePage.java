@@ -9,7 +9,7 @@ import static support.TestContext.*;
 
 public class IkeaProductTablePage extends Page {
 
-    @FindBy(xpath = "(//span[contains(@class,'btn__inner')])[19]")
+    @FindBy(xpath = "(//div[contains(@class,'plp-button-container')])[3]")
     private WebElement thirdRowIcon;
 
     public void getThirdItemIcon() {
@@ -20,21 +20,17 @@ public class IkeaProductTablePage extends Page {
             .isDisplayed();
     }
 
-    @FindBy(xpath = "(//button[@type='button'])[12]")
+    @FindBy(xpath = "(//span[contains(@class,'btn__inner')])[19]")
     private WebElement addThirdItemToCart;
 
     public void addThirdItemToACart() throws InterruptedException {
 
-        Thread.sleep(5000);
         getExecutor()
-            .executeScript("window.scrollBy(0,250)");
-        getExecutor()
-            .executeScript("arguments[0].scrollIntoView(true);", thirdRowIcon);
+            .executeScript("window.scrollBy(0,200)");
         fluentWait
             .until(ExpectedConditions.visibilityOf(thirdRowIcon));
         getExecutor()
             .executeScript("arguments[0].click();", addThirdItemToCart);
-        Thread.sleep(7000);
         fluentWait
             .until(ExpectedConditions
             .visibilityOfElementLocated(By.xpath("(//div[@class='hnf-page-container'])[1]")));
@@ -49,7 +45,7 @@ public class IkeaProductTablePage extends Page {
     public void getCartButton() {
 
         getExecutor()
-            .executeScript("window.scrollBy(0,-250)");
+            .executeScript("window.scrollBy(0,-500)");
         fluentWait
             .until(ExpectedConditions.visibilityOf(pageHeader));
         fluentWait

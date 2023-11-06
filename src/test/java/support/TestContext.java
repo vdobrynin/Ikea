@@ -92,6 +92,15 @@ public class TestContext {
                     chromeOptions.addArguments("--headless=new");
                     chromeOptions.addArguments("--window-size=1920,1200");
                     chromeOptions.addArguments("--disable-gpu");
+                    chromeOptions.addArguments("--force-device-scale-factor=0.75");
+                    chromeOptions.addArguments("--remote-allow-origins=*");
+                    chromeOptions.addArguments("--disable-features=VizDisplayCompositor");
+                    chromeOptions.addArguments("--disable-extensions");
+                    chromeOptions.addArguments("--no-sandbox");
+                    chromeOptions.addArguments("--disable-dev-shm-usage");
+                    chromeOptions.addArguments("--disable-infobars");
+                    chromeOptions.addArguments("--disable-blink-features=AutomationControlled");
+                    chromeOptions.setExperimentalOption("prefs", prefs);
                 }
 
                 driver = new ChromeDriver(chromeOptions);

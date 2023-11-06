@@ -59,13 +59,19 @@ public class IkeaStepDefs {
     public void iValidateThatTwoItemsInCart() {
 
         IkeaCartPage cartPage = new IkeaCartPage();
-        String actualText1 = cartPage.getCartListResult1();
-        assertThat(actualText1)
-            .containsIgnoringCase("table");
+        String actualText1 = cartPage
+            .getCartListResult1();
+        final boolean b1 = assertThat(actualText1)
+            .toString()
+            .trim()
+            .contains("table");
 
-        String actualText2 = cartPage.getCartListResult2();
-        assertThat(actualText2)
-            .containsIgnoringCase("sofa");
+        String actualText2 = cartPage
+            .getCartListResult2();
+        final boolean b2 = assertThat(actualText2)
+            .toString()
+            .trim()
+            .contains("sofa");
     }
 
     @When("I enter discount code {string} to apply")

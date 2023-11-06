@@ -24,8 +24,6 @@ public class IkeaHomePage extends Page {
 
         getSearchBox
             .sendKeys(item);
-        fluentWait
-            .until(ExpectedConditions.visibilityOf(searchButton));
         searchButton.click();
     }
 }
