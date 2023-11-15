@@ -24,6 +24,7 @@ public class IkeaHomePage extends Page {
 
         getSearchBox
             .sendKeys(item);
-        searchButton.click();
+        searchButton
+            .click();
     }
 }
