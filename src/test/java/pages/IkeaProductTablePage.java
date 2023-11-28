@@ -20,7 +20,7 @@ public class IkeaProductTablePage extends Page {
             .isDisplayed();
     }
 
-    @FindBy(xpath = "(//span[contains(@class,'btn__inner')])[19]")
+    @FindBy(css = "button[aria-label='Add \"INGO Table\" to cart'] span")
     private WebElement addThirdItemToCart;
 
     public void addThirdItemToACart() throws InterruptedException {

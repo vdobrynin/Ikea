@@ -12,13 +12,13 @@ public class IkeaProductSofaPage extends Page {
     @FindBy(xpath = "(//div[@class='plp-button-container'])[1]")
     private WebElement firstItemButton;
 
-    @FindBy(xpath = "(//span[@class='btn__inner'])[1]")
+    @FindBy(css = "button[aria-label='Add \"UPPLAND Sofa\" to cart'] span")
     private WebElement addFirstItemToCart;
 
     public void getFirstItemToCart() throws InterruptedException {
 
         getExecutor()
-            .executeScript("window.scrollBy(0,200)");
+            .executeScript("window.scrollBy(0,600)");
         getExecutor()
             .executeScript("arguments[0].click();", addFirstItemToCart);
         fluentWait
@@ -46,7 +46,7 @@ public class IkeaProductSofaPage extends Page {
     public void search(String text) {
 
         getExecutor()
-            .executeScript("window.scrollBy(0,-500)");
+            .executeScript("window.scrollBy(0,-700)");
         getExecutor()
             .executeScript("arguments[0].scrollIntoView(true);", headerSearch);
         fluentWait
