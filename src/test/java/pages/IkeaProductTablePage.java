@@ -26,7 +26,7 @@ public class IkeaProductTablePage extends Page {
     public void addThirdItemToACart() throws InterruptedException {
 
         getExecutor()
-            .executeScript("window.scrollBy(0,200)");
+            .executeScript("window.scrollBy(0,300)");
         fluentWait
             .until(ExpectedConditions.visibilityOf(thirdRowIcon));
         getExecutor()

@@ -75,14 +75,14 @@ public class IkeaStepDefs {
     }
 
     @When("I enter discount code {string} to apply")
-    public void iEnterDiscountCodeToApply(String code) {
+    public void iEnterDiscountCodeToApply(String code) throws InterruptedException {
 
         new IkeaCartPage()
             .clickAndEnterDiscountCode(code);
     }
 
     @Then("I validate that {string} but error message is displayed")
-    public void iValidateThatButErrorMessageIsDisplayed(String errorMessage) {
+    public void iValidateThatButErrorMessageIsDisplayed(String errorMessage) throws InterruptedException {
 
         IkeaCartPage errorDisplay = new IkeaCartPage();
         String actualErrorText = errorDisplay

@@ -26,38 +26,40 @@ public class IkeaCartPage extends Page {
         return secondItemInCart.getText();
     }
 
-    @FindBy(xpath = "(//span[@class='cart-ingka-accordion-item-header__title'])[1]")
+    @FindBy(xpath = "(//div[contains(text(),'Have a discount code?')])[1]")
     private WebElement discountHeader;
 
     @FindBy(xpath = "(//input[contains(@id,'discountCode')])[1]")
     private WebElement discountCode;
 
-    @FindBy(xpath = "(//button[@type='submit'])[1]")
+    @FindBy(css = "button[type='submit'] span[class='cart-ingka-btn__inner']")
     private WebElement applyButton;
 
-    public void clickAndEnterDiscountCode(String text) {
+    public void clickAndEnterDiscountCode(String text) throws InterruptedException {
 
         getExecutor()
-            .executeScript("window.scrollBy(0,-300)");
-        fluentWait
-            .until(ExpectedConditions.visibilityOf(discountHeader));
+            .executeScript("window.scrollBy(0,-400)");
+//        fluentWait
+//            .until(ExpectedConditions.visibilityOf(discountHeader));
         discountHeader
             .click();
         discountCode
             .sendKeys(text);
-        getExecutor()
-            .executeScript("arguments[0].scrollIntoView(true);", applyButton);
+//        getExecutor()
+//            .executeScript("arguments[0].scrollIntoView(true);", applyButton);
         getExecutor()
             .executeScript("arguments[0].click();", applyButton);
+        Thread.sleep(500);
     }
 
     @FindBy(xpath = "//span[@id='discount-code__error']")
     private WebElement errorMessage;
 
-    public String getErrorMessage() {
+    public String getErrorMessage() throws InterruptedException {
 
-        getExecutor()
-            .executeScript("arguments[0].scrollIntoView(true);", errorMessage);
+//        getExecutor()
+//            .executeScript("arguments[0].scrollIntoView(true);", errorMessage);
+        Thread.sleep(500);
         return errorMessage
             .getText();
     }

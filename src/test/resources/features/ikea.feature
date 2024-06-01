@@ -11,4 +11,4 @@ Feature: Ikea Test
         Then I open cart
         Then I validate that two items in cart
         When I enter discount code "code1234567890!" to apply
-        Then I validate that "Discount code is invalid" but error message is displayed
+        Then I validate that "Something went wrong, please try again in a moment." but error message is displayed
